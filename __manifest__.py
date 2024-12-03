@@ -15,6 +15,7 @@
         'point_of_sale._assets_pos': [
             'isfehka_receipt/static/src/js/models.js',
             'isfehka_receipt/static/src/js/receipt.js',
+            'isfehka_receipt/static/src/js/receipt_screen.js',
             'isfehka_receipt/static/src/js/reprint_screen.js',
             'isfehka_receipt/static/src/xml/receipt.xml',
         ],
