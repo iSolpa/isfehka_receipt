@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_session_form_inherit_isfehka" model="ir.ui.view">
+        <field name="name">pos.session.form.inherit.isfehka</field>
+        <field name="model">pos.session</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//sheet" position="inside">
+                <group string="ISFEHKA Receipt" name="isfehka_receipt">
+                    <field name="isfehka_receipt_image" widget="image"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
