@@ -32,7 +32,8 @@ patch(ReceiptScreen.prototype, {
         try {
             const order = this.pos.get_order();
             if (!order || !order.name) {
-                throw new Error("Invalid order data - missing order name");
+                console.warn("[ISFEHKA Receipt] Invalid order data - missing order name");
+                return null;
             }
 
             console.log("[ISFEHKA Receipt] Getting receipt for order:", order.name);
@@ -42,19 +43,21 @@ patch(ReceiptScreen.prototype, {
             });
 
             if (result.error) {
-                throw new Error(`Failed to load receipt image: ${result.error}`);
+                console.warn("[ISFEHKA Receipt] Failed to load receipt image:", result.error);
+                return null;
             }
 
             if (!result.success || !result.image_data) {
-                throw new Error('No image data received from server');
+                console.warn('[ISFEHKA Receipt] No image data received from server');
+                return null;
             }
             
             console.log("[ISFEHKA Receipt] Successfully loaded receipt image data");
             return result.image_data;
             
         } catch (error) {
-            console.error("[ISFEHKA Receipt] Error loading receipt image:", error);
-            throw error;
+            console.warn("[ISFEHKA Receipt] Error loading receipt image:", error);
+            return null;
         }
     },
 
@@ -80,6 +83,8 @@ patch(ReceiptScreen.prototype, {
                     hasImage: true,
                     orderName: order.name
                 });
+            } else {
+                console.warn("[ISFEHKA Receipt] Proceeding with receipt print without HKA image");
             }
 
             const isPrinted = await this.printer.print(
