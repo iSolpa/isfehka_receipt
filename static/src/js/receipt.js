@@ -37,17 +37,31 @@ patch(OrderReceipt.prototype, {
 
         // Case 1: Reprint - Use image from props
         if (isReprint && this.props.data?.isfehka_receipt_image) {
-            console.log("[ISFEHKA Receipt] Using existing image from reprint props");
+            console.log("[ISFEHKA Receipt] Using existing image from reprint props:", {
+                imageLength: this.props.data.isfehka_receipt_image.length,
+                willSetImage: true
+            });
             this.state.receiptImage = this.props.data.isfehka_receipt_image;
             this.state.imageLoaded = true;
+            console.log("[ISFEHKA Receipt] Image set from reprint props:", {
+                imageLength: this.state.receiptImage.length,
+                imageLoaded: this.state.imageLoaded
+            });
             return;
         }
 
         // Case 2: Print - Use image from props (set by ReceiptScreen)
         if (isPrint && this.props.data?.isfehka_receipt_image) {
-            console.log("[ISFEHKA Receipt] Using image from print props");
+            console.log("[ISFEHKA Receipt] Using image from print props:", {
+                imageLength: this.props.data.isfehka_receipt_image.length,
+                willSetImage: true
+            });
             this.state.receiptImage = this.props.data.isfehka_receipt_image;
             this.state.imageLoaded = true;
+            console.log("[ISFEHKA Receipt] Image set from print props:", {
+                imageLength: this.state.receiptImage.length,
+                imageLoaded: this.state.imageLoaded
+            });
             return;
         }
 
@@ -94,6 +108,11 @@ patch(OrderReceipt.prototype, {
     },
     
     get isfehkaReceiptImage() {
+        console.log("[ISFEHKA Receipt] Getting receipt image from state:", {
+            hasImage: !!this.state.receiptImage,
+            stateKeys: Object.keys(this.state),
+            imageLength: this.state.receiptImage?.length
+        });
         return this.state.receiptImage;
     }
 });
