@@ -1,6 +1,6 @@
 {
     'name': 'ISFEHKA Receipt',
-    'version': '17.0.1.0.1',
+    'version': '17.0.1.0.2',
     'category': 'Point of Sale',
     'summary': 'Custom ISFEHKA Receipt handling for POS',
     'description': """
