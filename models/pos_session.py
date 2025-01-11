@@ -13,6 +13,7 @@ class PosSession(models.Model):
     def _pos_ui_models_to_load(self):
         _logger.info("[ISFEHKA Receipt] Loading POS UI models")
         result = super()._pos_ui_models_to_load()
+        result.append('pos.hkapdf')
         _logger.info("[ISFEHKA Receipt] Models to load: %s", result)
         return result
 
@@ -22,6 +23,17 @@ class PosSession(models.Model):
         result['search_params']['fields'].append('isfehka_receipt_image')
         _logger.info("[ISFEHKA Receipt] Updated loader params: %s", result)
         return result
+
+    def _loader_params_pos_hkapdf(self):
+        return {
+            'search_params': {
+                'domain': [],
+                'fields': ['name', 'image_data'],
+            },
+        }
+
+    def _get_pos_ui_pos_hkapdf(self, params):
+        return self.env['pos.hkapdf'].search_read(**params['search_params'])
 
     @api.depends('account_move.hka_pdf')
     def _compute_isfehka_receipt_image(self):
