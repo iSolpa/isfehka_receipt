@@ -1,6 +1,6 @@
 {
     'name': 'ISFEHKA Receipt',
-    'version': '17.0.1.0.3',
+    'version': '17.0.1.0.4',
     'category': 'Point of Sale',
     'summary': 'Custom ISFEHKA Receipt handling for POS',
     'description': """
@@ -17,6 +17,7 @@
             'isfehka_receipt/static/src/js/receipt.js',
             'isfehka_receipt/static/src/js/receipt_screen.js',
             'isfehka_receipt/static/src/js/reprint_screen.js',
+            'isfehka_receipt/static/src/js/payment_screen.js',
             'isfehka_receipt/static/src/xml/receipt.xml',
         ],
     },
